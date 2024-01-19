@@ -1,0 +1,59 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <welcome-file-list>
+    <welcome-file>login.html</welcome-file>
+  </welcome-file-list>
+
+
+  <filter>
+    <filter-name>LoggingFilter</filter-name>
+    <filter-class>com.test.filters.LoggingFilter</filter-class>
+  </filter>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.test.filters.AuthFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>LoggingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <listener>
+    <listener-class>com.test.listeners.RequestListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>App</servlet-name>
+    <servlet-class>com.test.app.App</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>App</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DB</servlet-name>
+    <servlet-class>com.test.app.DbTest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DB</servlet-name>
+    <url-pattern>/dbtest</url-pattern>
+  </servlet-mapping>
+
+
+  <context-param>
+    <param-name>PostgresUrl</param-name>
+    <param-value>jdbc:postgresql://localhost/test</param-value>
+  </context-param>
+</web-app>
